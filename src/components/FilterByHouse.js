@@ -9,7 +9,7 @@ function FilterByHouse(props) {
         <>
             <label
                 className="form__label"
-                htmlForm="house">Selecciona la casa</label>
+                htmlFor="house">Selecciona la casa: </label>
             <select
                 className="form__input-text"
                 name="house"
@@ -20,7 +20,7 @@ function FilterByHouse(props) {
                 <option value="all">Todas</option>
                 <option value="Gryffindor" selected>Gryffindor</option>
                 <option value="Slytherin">Slytherin</option>
-                <option value="Hafflepuff">Hafflepuff</option>
+                <option value="Hufflepuff">Hufflepuff</option>
                 <option value="Ravenclaw">Ravenclaw</option>
                 
 
