@@ -3,9 +3,9 @@ import CharacterCard from "./CharacterCard";
 
 function CharacterList(props){
 
-    const characterElements = props.characters.map((item) => {
+    const characterElements = props.characters.map((item, index) => {
         return (
-            <CharacterCard character={item}></CharacterCard>
+            <CharacterCard character={item} key={index}></CharacterCard>
         );
     });
 
@@ -19,5 +19,4 @@ function CharacterList(props){
 
 }
 export default CharacterList;
-
 

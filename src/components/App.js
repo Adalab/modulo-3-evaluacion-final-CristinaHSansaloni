@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import getDataApi from "../services/api";
 import CharacterList from './CharacterList';
 import Filters from './Filters';
+import CharacterDetail from './CharacterDetail';
+import {Route, Routes} from 'react-router-dom';
+import {useLocation, matchPath} from 'react-router-dom';
 import '../styles/App.css';
 
 function App() {
@@ -13,7 +16,6 @@ function App() {
 
   useEffect(()=>{
     getDataApi().then((dataFromApi) => {
-      console.log(dataFromApi);
       setDataCharacters(dataFromApi);
     })
   }, []);
@@ -34,25 +36,45 @@ function App() {
      
       return filterByHouse === 'all' ? true : character.house === filterByHouse;
       
+    })
+    .filter(character=>{
+      return character.name.toLowerCase().includes(filterByName.toLowerCase());
     });
 
+    //Obtener el ide del usuario clic
+   const { pathname } = useLocation();
+    const dataPath = matchPath("/user/:userId", pathname);
+
+    const userId = dataPath !== null ? dataPath.params.userId : null;
+    const characterFound = dataCharacters.find(user => { return user.id === userId});
+
   
-
-    // filtro por nombre
-    /*const characterFiltersName = dataCharacters
-      .filter((character) => {
-        return character.name.toLowerCase().includes(filterByName.toLowerCase());
-      })*/
-
   return (
     <>
       <h1 className="title--big">Harry Potter</h1>
-      <Filters 
-        filterByName={filterByName}
-        handleByFilterName={handleByFilterName}
-        filterByHouse={filterByHouse}
-        handleFilterByHouse={handleFilterByHouse}></Filters>
-      <CharacterList characters={characterFilters}></CharacterList>
+
+      <Routes>
+        <Route
+          path='/'
+          element={
+            <>
+              <Filters 
+                filterByName={filterByName}
+                handleByFilterName={handleByFilterName}
+                filterByHouse={filterByHouse}
+                handleFilterByHouse={handleFilterByHouse}></Filters>
+              <CharacterList characters={characterFilters}></CharacterList>
+            </>
+          }
+        />
+        <Route 
+          path='/user/:userId'
+          element={
+            <CharacterDetail character={characterFound} />
+          }
+        />
+      </Routes>
+
     </>
   );
 }

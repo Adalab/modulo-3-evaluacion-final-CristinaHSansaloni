@@ -1,7 +1,7 @@
 function FilterByName(props) {
 
-    const handleChangeName = (ev) => {
-        props.handleByFilterName(ev.target.value)
+    const handleByFilterName = (ev) => {
+        props.handleByFilterName(ev.target.value);
     }
 
     return(
@@ -14,7 +14,7 @@ function FilterByName(props) {
                 name="name" 
                 id="name"
                 value={props.FilterByName}
-                onChange={handleChangeName}>
+                onChange={handleByFilterName}>
 
                 </input>
             </form>

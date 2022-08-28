@@ -1,3 +1,4 @@
+import { unsupportedEnvironment } from "node-sass/lib/errors";
 
 const getDataApi=()=>{
     return fetch("http://hp-api.herokuapp.com/api/characters")
@@ -11,8 +12,8 @@ const getDataApi=()=>{
                     alive: item.alive,
                     gender: item.gender,
                     species: item.species,
-                    alternate_names: item.alternate_names
-                    //id:
+                    alternate_names: item.alternate_names,
+                    
                 }
             });
             return dataClean;
