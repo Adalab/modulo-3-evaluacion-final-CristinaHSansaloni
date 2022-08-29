@@ -1,8 +1,12 @@
+import localStorage from '../services/localStorage';
+
 function FilterByName(props) {
 
     const handleByFilterName = (ev) => {
         props.handleByFilterName(ev.target.value);
-    }
+        //mando lo que hay en value
+        localStorage.set('name', ev.target.value);
+    };
 
     return(
         <>
@@ -13,9 +17,9 @@ function FilterByName(props) {
                 type="text" 
                 name="name" 
                 id="name"
-                value={props.FilterByName}
+                value={localStorage.get('name', '')}
+                //value={props.FilterByName}
                 onChange={handleByFilterName}>
-
                 </input>
             </form>
         </>
