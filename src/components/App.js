@@ -7,14 +7,14 @@ import {Route, Routes} from 'react-router-dom';
 import {useLocation, matchPath} from 'react-router-dom';
 import '../styles/App.css';
 
-function App() {
 
+function App() {
   const [dataCharacters, setDataCharacters] = useState([]);
   const [filterByName, setFilterByName] = useState("");
   const [filterByHouse, setFilterByHouse] = useState("Gryffindor");
   
 
-  useEffect(()=>{
+  useEffect(() => {
     getDataApi().then((dataFromApi) => {
       setDataCharacters(dataFromApi);
     })
@@ -42,40 +42,49 @@ function App() {
     });
 
     //Obtener el ide del usuario clic
-   const { pathname } = useLocation();
-    const dataPath = matchPath("/user/:userId", pathname);
+    const { pathname } = useLocation();
+    const dataPath = matchPath('/character/:characterId', pathname);
 
-    const userId = dataPath !== null ? dataPath.params.userId : null;
-    const characterFound = dataCharacters.find(user => { return user.id === userId});
+    const characterId = dataPath !== null ? dataPath.params.characterId : null;
+    const characterFound = dataCharacters.find((character) => { 
+      return character.id === characterId;
+    });
 
   
   return (
-    <>
-      <h1 className="title--big">Harry Potter</h1>
+    <body>
+      <header className="header">
+        <h1 className="header__title">Harry Potter</h1>
+      </header>
 
       <Routes>
         <Route
           path='/'
           element={
-            <>
-              <Filters 
-                filterByName={filterByName}
-                handleByFilterName={handleByFilterName}
-                filterByHouse={filterByHouse}
-                handleFilterByHouse={handleFilterByHouse}></Filters>
-              <CharacterList characters={characterFilters}></CharacterList>
-            </>
+            <main className="main">
+              <section className="input">
+                <Filters 
+                  filterByName={filterByName}
+                  handleByFilterName={handleByFilterName}
+                  filterByHouse={filterByHouse}
+                  handleFilterByHouse={handleFilterByHouse} />
+              </section>
+
+              <section className="list">
+                <CharacterList characters={characterFilters} />
+              </section>  
+              
+            </main>
           }
         />
         <Route 
-          path='/user/:userId'
+          path='/character/:characterId'
           element={
             <CharacterDetail character={characterFound} />
           }
         />
       </Routes>
-
-    </>
+    </body>
   );
 }
 

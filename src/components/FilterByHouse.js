@@ -1,10 +1,8 @@
 function FilterByHouse(props) {
 
     const handleChange = (ev) => {
-        props.handleFilterByHouse(ev.target.value)
-        
+        props.handleFilterByHouse(ev.target.value) 
     }
-
     return(
         <>
             <label
@@ -16,17 +14,13 @@ function FilterByHouse(props) {
                 id="house"
                 value={props.FilterByHouse}
                 onChange={handleChange}>
-
                 <option value="all">Todas</option>
-                <option value="Gryffindor" selected>Gryffindor</option>
+                <option value="Gryffindor">Gryffindor</option>
                 <option value="Slytherin">Slytherin</option>
                 <option value="Hufflepuff">Hufflepuff</option>
                 <option value="Ravenclaw">Ravenclaw</option>
-                
-
             </select>
         </>
     );
-
 }
 export default FilterByHouse;
