@@ -1,0 +1,15 @@
+.header {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+    margin-top: 3rem;
+    padding-bottom: 0.5rem;
+    
+    &__title {
+        font-size: 2rem;
+        font-weight: bold;
+        text-transform: capitalize;
+    }
+}

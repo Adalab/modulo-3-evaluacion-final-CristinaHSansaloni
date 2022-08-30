@@ -1,17 +1,11 @@
 import {Link} from "react-router-dom";
+import CharacterDetail from "./CharacterDetail";
 
 function CharacterCard(props) {
     return(
-        <li className="card">
-            <Link to={`/user/${props.user.id}`}>
-                <img className="card__img"
-                src={props.character.image}
-                alt={`Foto de ${props.character.name}`}
-                title={`Foto de ${props.character.name}`}></img>
-                <h4 className="card__title">{props.character.name}</h4>
-                <p className="card__description">{`Estatus: ${props.character.alive} Especie: ${props.character.species} Género: ${props.character.gender} Casa: ${props.character.house}`}</p>
-            </Link>
-        </li>
+
+        <CharacterDetail />
+  
     );
 }
 export default CharacterCard;

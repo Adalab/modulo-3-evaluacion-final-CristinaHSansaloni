@@ -1,12 +1,18 @@
+
+import imgDefault from '../images/potter.jpg';
 import { Link } from 'react-router-dom';
 
 const CharacterDetail=(props)=>{
 
+    const imgEmpty = (image) => {
+        return image === '' ? imgDefault : props.character.image;
+    };
+
     return(
-        <section className="card" key={props.character.id} id={props.character.id}>
+        <li className="card" key={props.character.id} id={props.character.id}>
             <Link to="/">Atrás</Link>
                 <img className="card__img"
-                    src={props.character.image}
+                    src={imgEmpty(props.character.image)}
                     alt={`Foto de ${props.character.name}`}
                     title={`Foto de ${props.character.name}`}></img>
                 <h4 className="card__title">{props.character.name}</h4>
@@ -15,7 +21,7 @@ const CharacterDetail=(props)=>{
                 <p className="card__description">{`Género: ${props.character.gender}`}</p> 
                 <p className="card__description">{`Casa: ${props.character.house}`}</p> 
 
-        </section>
+        </li>
     );
 }
 export default CharacterDetail;

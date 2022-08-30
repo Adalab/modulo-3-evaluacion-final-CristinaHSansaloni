@@ -6,8 +6,7 @@ const getDataApi= () => {
         .then(data => {
             const dataClean = data.map(character => {
                 return {
-                    image:
-                        character.image === '' ? 'https://via.placeholder.com/210x295/ffffff/666666/?text=HarryPotter' : character.image,
+                    image: character.image,
                     name: character.name,
                     house: character.house,
                     alive: character.alive,

@@ -10,7 +10,7 @@ function FilterByName(props) {
 
     return(
         <>
-            <form>
+            <form className="form">
                 <label className="form__label" htmlFor="name">Busca por personaje: </label>
                 <input 
                 className="form__input-text" 

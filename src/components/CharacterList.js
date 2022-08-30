@@ -1,4 +1,6 @@
 
+import '../styles/CharacterList.scss';
+import imgDefault from '../images/potter.jpg';
 import { Link } from 'react-router-dom';
 
 function CharacterList({characters}){
@@ -8,7 +10,7 @@ function CharacterList({characters}){
         <Link to={`/character/${character.id}`} key={character.id}>
             <li key={character.id} id={character.id}>
                 <img
-                    src={character.image}
+                    src={character.image || imgDefault}
                     
                 ></img>
                 <h2>{character.name}</h2>

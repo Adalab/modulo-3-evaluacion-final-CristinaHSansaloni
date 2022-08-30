@@ -1,22 +1,29 @@
-import { useState, useEffect } from 'react';
+import '../styles/App.scss';
+// api - ls
 import getDataApi from "../services/api";
+import localStorage from '../services/localStorage';
+// components
 import CharacterList from './CharacterList';
 import Filters from './Filters';
 import CharacterDetail from './CharacterDetail';
-import {Route, Routes} from 'react-router-dom';
-import {useLocation, matchPath} from 'react-router-dom';
-import localStorage from '../services/localStorage';
-import '../styles/App.css';
+import Header from './Header';
+// hooks
+import { useState, useEffect } from 'react';
+import { Link, Route, Routes } from 'react-router-dom';
+import { useLocation, matchPath } from 'react-router';
+import {useParams} from 'react-router-dom';
+
+
 
 
 function App() {
-  //tomo actual del data y actual del filter si los hay
+  
   const [dataCharacters, setDataCharacters] = useState(localStorage.get('dataCharacter', []));
   const [filterByName, setFilterByName] = useState(localStorage.get('filterByName', ""));
-  const [filterByHouse, setFilterByHouse] = useState("Gryffindor");
+  const [filterByHouse, setFilterByHouse] = useState('Gryffindor');
   
 
-  //cuando carga la página, datos de fetch dentro del useEffect, sino los toma de ls
+
   useEffect(() => {
     getDataApi().then((dataFromApi) => {
       setDataCharacters(dataFromApi);
@@ -27,9 +34,7 @@ function App() {
 
 
   const handleByFilterName = (value) => {
-    //localStorage.set('name', value);
     setFilterByName(value);
-    
   }
 
   const handleFilterByHouse = (value) => {
@@ -42,13 +47,13 @@ function App() {
     .filter((character) => {
      
       return filterByHouse === 'all' ? true : character.house === filterByHouse;
-      
+      //all o ''
     })
     .filter(character=>{
       return character.name.toLowerCase().includes(filterByName.toLowerCase());
     });
 
-    //Obtener el ide del usuario clic
+    
     const { pathname } = useLocation();
     const dataPath = matchPath('/character/:characterId', pathname);
 
@@ -59,10 +64,8 @@ function App() {
 
   
   return (
-    <>
-      <header className="header">
-        <h1 className="header__title">Harry Potter</h1>
-      </header>
+    <div className="container">
+      <Header />
 
       <Routes>
         <Route
@@ -77,7 +80,7 @@ function App() {
                   handleFilterByHouse={handleFilterByHouse} />
               </section>
 
-              <section className="list">
+              <section className="cards">
                 <CharacterList characters={characterFilters} />
               </section>  
               
@@ -91,7 +94,7 @@ function App() {
           }
         />
       </Routes>
-    </>
+    </div>
   );
 }
 
