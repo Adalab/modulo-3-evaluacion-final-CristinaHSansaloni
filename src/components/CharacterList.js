@@ -8,8 +8,8 @@ function CharacterList({characters}){
     const characterList = characters
     .map((character) => (
         <Link to={`/character/${character.id}`} key={character.id}>
-            <li key={character.id} id={character.id}>
-                <img
+            <li key={character.id} id={character.id} className="list__card">
+                <img className="list__img"
                     src={character.image || imgDefault}
                     
                 ></img>
@@ -19,8 +19,8 @@ function CharacterList({characters}){
         </Link>
     ));
         return (
-            <section>
-                <ul className="cards">{characterList}</ul>
+            <section className="list">
+                <ul className="list__element">{characterList}</ul>
             </section>
         );
 

@@ -4,7 +4,7 @@ function FilterByName(props) {
 
     const handleByFilterName = (ev) => {
         props.handleByFilterName(ev.target.value);
-        //mando lo que hay en value
+        ev.preventDefault();
         localStorage.set('name', ev.target.value);
     };
 
@@ -18,7 +18,6 @@ function FilterByName(props) {
                 name="name" 
                 id="name"
                 value={localStorage.get('name', '')}
-                //value={props.FilterByName}
                 onChange={handleByFilterName}>
                 </input>
             </form>

@@ -9,11 +9,8 @@ import CharacterDetail from './CharacterDetail';
 import Header from './Header';
 // hooks
 import { useState, useEffect } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { useLocation, matchPath } from 'react-router';
-import {useParams} from 'react-router-dom';
-
-
 
 
 function App() {
@@ -32,7 +29,6 @@ function App() {
 
  
 
-
   const handleByFilterName = (value) => {
     setFilterByName(value);
   }
@@ -47,7 +43,6 @@ function App() {
     .filter((character) => {
      
       return filterByHouse === 'all' ? true : character.house === filterByHouse;
-      //all o ''
     })
     .filter(character=>{
       return character.name.toLowerCase().includes(filterByName.toLowerCase());
@@ -77,7 +72,7 @@ function App() {
                   filterByName={filterByName}
                   handleByFilterName={handleByFilterName}
                   filterByHouse={filterByHouse}
-                  handleFilterByHouse={handleFilterByHouse} />
+                  handleFilterByHouse={handleFilterByHouse}/>
               </section>
 
               <section className="cards">

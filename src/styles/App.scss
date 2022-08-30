@@ -6,14 +6,20 @@
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
     font-size: 1rem;
+    list-style: none;
+    text-decoration: none;
+    outline: none;
+    
 }
 ul {
     list-style: none;
 }
 .container {
+    width: 100%;
     padding: 1rem;
     background-color: #740001;
     color: #fff;
+    
 }
 
 
@@ -27,7 +33,3 @@ ul {
 }
 
 
-.cards {
-   display: grid;
-
-}
